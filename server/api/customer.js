@@ -33,5 +33,5 @@ router.get('/products/:id', async function (req, res) {
     const _id = req.params.id;
     const product = await ProductDAO.selectByID(_id);
     res.json(product);
-});
+  });
 module.exports = router;

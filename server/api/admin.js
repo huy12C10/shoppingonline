@@ -82,13 +82,12 @@ router.post('/products', JwtUtil.checkToken, async function (req, res) {
   res.json(result);
 });
 
-// product
-router.delete('/products/:id', JwtUtil.checkToken, async function (req, res) {
+// category
+router.delete('/categories/:id', JwtUtil.checkToken, async function (req, res) {
   const _id = req.params.id;
-  const result = await ProductDAO.delete(_id);
+  const result = await CategoryDAO.delete(_id);
   res.json(result);
 });
-
 // product
 router.put('/products/:id', JwtUtil.checkToken, async function (req, res) {
   const _id = req.params.id;
@@ -100,6 +99,12 @@ router.put('/products/:id', JwtUtil.checkToken, async function (req, res) {
   const category = await CategoryDAO.selectByID(cid);
   const product = { _id: _id, name: name, price: price, image: image, cdate: now, category: category };
   const result = await ProductDAO.update(product);
+  res.json(result);
+});
+// product
+router.delete('/products/:id', JwtUtil.checkToken, async function (req, res) {
+  const _id = req.params.id;
+  const result = await ProductDAO.delete(_id);
   res.json(result);
 });
 module.exports = router;
